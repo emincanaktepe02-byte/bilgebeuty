@@ -37,12 +37,9 @@ export default function RootLayout({
   return (
     <html
       lang="tr"
-      className={`${cormorant.variable} ${dmSans.variable} h-full`}
+      className={`${cormorant.variable} ${dmSans.variable}`}
     >
-      <body
-        className="min-h-full flex flex-col"
-        style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif" }}
-      >
+      <body style={{ fontFamily: "var(--font-dm-sans), 'DM Sans', system-ui, sans-serif", margin: 0, padding: 0 }}>
         {children}
       </body>
     </html>
