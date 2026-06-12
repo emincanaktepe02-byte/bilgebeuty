@@ -134,6 +134,81 @@ body {
 .delay-700 { animation-delay: 0.7s; }
 .delay-800 { animation-delay: 0.8s; }
 
+@keyframes hero-brand-reveal {
+  0%   { opacity: 0; transform: scale(1.06) translateY(14px); filter: blur(10px); letter-spacing: 0.42em; }
+  55%  { filter: blur(0px); }
+  100% { opacity: 1; transform: scale(1) translateY(0);      filter: blur(0px);  letter-spacing: 0.22em; }
+}
+
+.hero-brand {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: white;
+  text-shadow: 0 0 80px rgba(255,255,255,0.12);
+  animation: hero-brand-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.25s;
+  display: block;
+}
+
+/* ── Silver metallic hero title ── */
+@keyframes hero-silver-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.06) translateY(14px);
+    filter: blur(10px) drop-shadow(0 0 0 transparent);
+    letter-spacing: 0.42em;
+  }
+  55% {
+    filter: blur(0px) drop-shadow(0 1px 4px rgba(0,0,0,0.45));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px) drop-shadow(0 2px 18px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(200,200,220,0.12));
+    letter-spacing: 0.22em;
+  }
+}
+
+@keyframes silver-light-catch {
+  0%   { background-position: 240% center; }
+  45%  { background-position: -80% center; }
+  100% { background-position: 240% center; }
+}
+
+.hero-brand-silver {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  display: block;
+  background: linear-gradient(
+    115deg,
+    #484848 0%,
+    #8c8c8c 9%,
+    #d4d4d4 17%,
+    #f8f8f8 23%,
+    #ffffff 28%,
+    #ececec 33%,
+    #b4b4b4 44%,
+    #888888 52%,
+    #c0c0c0 60%,
+    #f0f0f0 67%,
+    #ffffff 72%,
+    #d8d8d8 78%,
+    #a0a0a0 87%,
+    #585858 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    hero-silver-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) both 0.25s,
+    silver-light-catch 14s ease-in-out infinite 2s;
+}
+
 /* ── Gold shimmer text ── */
 .text-gold-shimmer {
   background: linear-gradient(90deg, var(--gold-dark) 0%, var(--gold) 30%, #F0D89A 50%, var(--gold) 70%, var(--gold-dark) 100%);

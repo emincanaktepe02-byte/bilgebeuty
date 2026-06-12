@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
@@ -24,10 +25,25 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={ref} className="section-wrap" style={{ background: "var(--white)" }}>
-      <div className="section-inner">
+    <section id="about" ref={ref} className="section-wrap" style={{ position: "relative", background: "var(--white)" }}>
 
-        {/* Centered header */}
+      {/* Background image — visible, light cream wash */}
+      <div style={{ position: "absolute", inset: 0, zIndex: 0, overflow: "hidden" }}>
+        <Image
+          src="/images/about-bg.jpeg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={90}
+          style={{ objectFit: "cover", objectPosition: "center" }}
+        />
+        {/* Light cream overlay so text stays readable but image is clearly visible */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(250,248,245,0.62)" }} />
+      </div>
+
+      <div className="section-inner" style={{ position: "relative", zIndex: 1 }}>
+
+        {/* Header */}
         <div
           className="section-header"
           style={{ opacity: vis ? 1 : 0, transform: vis ? "none" : "translateY(28px)", transition: "opacity 0.8s ease, transform 0.8s ease" }}
@@ -47,96 +63,52 @@ export default function About() {
           </p>
         </div>
 
-        {/* Two-column: visual card + content */}
+        {/* Text content — centered, generous max-width */}
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "clamp(2rem, 5vw, 5rem)",
-            alignItems: "center",
+            maxWidth: "780px",
+            margin: "0 auto",
+            opacity: vis ? 1 : 0,
+            transform: vis ? "translateY(0)" : "translateY(32px)",
+            transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s",
           }}
         >
-          {/* Left: decorative panel */}
-          <div
-            style={{
-              opacity: vis ? 1 : 0,
-              transform: vis ? "translateX(0)" : "translateX(-40px)",
-              transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                borderRadius: "4px",
-                height: "clamp(380px, 45vw, 540px)",
-                background: "linear-gradient(140deg, #f5ede0 0%, #e8d8c0 55%, #ddc8a0 100%)",
-                position: "relative",
-                overflow: "hidden",
-              }}
-            >
-              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 30% 40%, rgba(201,169,110,0.35) 0%, transparent 60%)" }} />
-              <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 72% 65%, rgba(232,180,160,0.22) 0%, transparent 55%)" }} />
-              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(7rem, 18vw, 13rem)", fontWeight: 300, color: "rgba(160,120,64,0.22)", lineHeight: 1, letterSpacing: "-0.04em", userSelect: "none" }}>BB</span>
-              </div>
-              <div style={{ position: "absolute", bottom: 0, right: 0, width: "180px", height: "180px", background: "linear-gradient(135deg, transparent 0%, rgba(201,169,110,0.1) 100%)", borderTop: "1px solid rgba(201,169,110,0.18)", borderLeft: "1px solid rgba(201,169,110,0.18)" }} />
-            </div>
+          <p style={{ color: "var(--charcoal-light)", fontSize: "0.95rem", lineHeight: 1.9, fontWeight: 300, marginBottom: "2rem", textAlign: "center" }}>
+            Bilge Beauty, 8 yılı aşkın deneyimiyle İzmir&apos;in en güvenilen güzellik ve cilt bakım merkezlerinden biri olarak hizmet vermektedir. Her müşterimize kişiselleştirilmiş tedavi protokolleri hazırlıyoruz.
+          </p>
 
-            {/* Floating badge */}
-            <div
-              className="glass-card"
-              style={{ position: "absolute", bottom: "-1.5rem", right: "-1.5rem", padding: "1.2rem 1.6rem", borderRadius: "4px", boxShadow: "0 12px 40px rgba(26,26,26,0.1)", minWidth: "160px" }}
-            >
-              <p style={{ fontFamily: "var(--font-cormorant)", fontSize: "2.6rem", fontWeight: 600, color: "var(--gold)", lineHeight: 1, marginBottom: "0.3rem" }}>100+</p>
-              <p style={{ fontSize: "0.66rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--gray)", fontWeight: 600 }}>Mutlu Müşteri</p>
-            </div>
+          {/* Features */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem", marginBottom: "2.2rem" }}>
+            {features.map((f, i) => (
+              <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "1rem", background: "rgba(250,248,245,0.55)", backdropFilter: "blur(6px)", border: "1px solid rgba(201,169,110,0.18)", borderRadius: "4px", padding: "1rem 1.2rem" }}>
+                <span style={{ color: "var(--gold)", fontSize: "1rem", marginTop: "0.15rem", minWidth: "1.2rem", fontWeight: 700 }}>{f.icon}</span>
+                <p style={{ color: "var(--charcoal)", fontSize: "0.86rem", lineHeight: 1.8, margin: 0 }}>{f.text}</p>
+              </div>
+            ))}
           </div>
 
-          {/* Right: text content */}
-          <div
-            style={{
-              opacity: vis ? 1 : 0,
-              transform: vis ? "translateX(0)" : "translateX(40px)",
-              transition: "opacity 0.9s cubic-bezier(0.22,1,0.36,1) 0.28s, transform 0.9s cubic-bezier(0.22,1,0.36,1) 0.28s",
-            }}
-          >
-            <p style={{ color: "var(--charcoal-light)", fontSize: "0.92rem", lineHeight: 1.9, fontWeight: 300, marginBottom: "1.8rem" }}>
-              Bilge Beauty, 8 yılı aşkın deneyimiyle İzmir&apos;in en güvenilen güzellik ve cilt bakım merkezlerinden biri olarak hizmet vermektedir. Her müşterimize kişiselleştirilmiş tedavi protokolleri hazırlıyoruz.
+          {/* Quote */}
+          <div style={{ background: "rgba(250,248,245,0.55)", backdropFilter: "blur(8px)", border: "1px solid rgba(201,169,110,0.22)", borderLeft: "3px solid var(--gold)", borderRadius: "3px", padding: "1.4rem 1.8rem", marginBottom: "2.2rem" }}>
+            <p style={{ fontFamily: "var(--font-cormorant)", fontSize: "1.15rem", fontStyle: "italic", color: "var(--charcoal)", lineHeight: 1.65, margin: 0, textAlign: "center" }}>
+              &ldquo;Müşteri sağlığı ve memnuniyeti bizim temel misyonumuzdur.&rdquo;
             </p>
+          </div>
 
-            {/* Features */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
-              {features.map((f, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
-                  <span style={{ color: "var(--gold)", fontSize: "1rem", marginTop: "0.15rem", minWidth: "1.2rem", fontWeight: 700 }}>{f.icon}</span>
-                  <p style={{ color: "var(--charcoal)", fontSize: "0.88rem", lineHeight: 1.8, margin: 0 }}>{f.text}</p>
-                </div>
-              ))}
-            </div>
+          {/* Stats */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginBottom: "2.2rem" }}>
+            {stats.map((s) => (
+              <div key={s.label} style={{ textAlign: "center", background: "rgba(250,248,245,0.55)", backdropFilter: "blur(6px)", border: "1px solid rgba(201,169,110,0.14)", borderRadius: "4px", padding: "1.4rem 1rem" }}>
+                <p style={{ fontFamily: "var(--font-cormorant)", fontSize: "2.4rem", fontWeight: 600, color: "var(--gold)", lineHeight: 1, margin: "0 0 0.4rem" }}>{s.value}</p>
+                <p style={{ fontSize: "0.66rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray)", margin: 0 }}>{s.label}</p>
+              </div>
+            ))}
+          </div>
 
-            {/* Quote */}
-            <div style={{ background: "linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(201,169,110,0.03) 100%)", border: "1px solid rgba(201,169,110,0.22)", borderLeft: "3px solid var(--gold)", borderRadius: "3px", padding: "1.3rem 1.5rem", marginBottom: "2rem" }}>
-              <p style={{ fontFamily: "var(--font-cormorant)", fontSize: "1.1rem", fontStyle: "italic", color: "var(--charcoal)", lineHeight: 1.65, margin: 0 }}>
-                &ldquo;Müşteri sağlığı ve memnuniyeti bizim temel misyonumuzdur.&rdquo;
-              </p>
-            </div>
-
-            {/* Stats */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem", marginBottom: "2rem" }}>
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p style={{ fontFamily: "var(--font-cormorant)", fontSize: "2.2rem", fontWeight: 600, color: "var(--gold)", lineHeight: 1, margin: "0 0 0.3rem" }}>{s.value}</p>
-                  <p style={{ fontSize: "0.68rem", letterSpacing: "0.1em", textTransform: "uppercase", color: "var(--gray)", margin: 0 }}>{s.label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Certs */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem" }}>
-              {["FDA Onaylı", "ISO Sertifikalı", "Tıbbi Estetik Lisanslı"].map((c) => (
-                <span key={c} style={{ padding: "0.4rem 1rem", fontSize: "0.68rem", letterSpacing: "0.1em", border: "1px solid rgba(201,169,110,0.3)", color: "var(--gold-dark)", borderRadius: "2px", fontWeight: 600 }}>✓ {c}</span>
-              ))}
-            </div>
+          {/* Certs */}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.6rem", justifyContent: "center" }}>
+            {["FDA Onaylı", "ISO Sertifikalı", "Tıbbi Estetik Lisanslı"].map((c) => (
+              <span key={c} style={{ padding: "0.4rem 1rem", fontSize: "0.68rem", letterSpacing: "0.1em", border: "1px solid rgba(201,169,110,0.3)", color: "var(--gold-dark)", borderRadius: "2px", fontWeight: 600, background: "rgba(250,248,245,0.55)", backdropFilter: "blur(4px)" }}>✓ {c}</span>
+            ))}
           </div>
         </div>
       </div>

@@ -55,11 +55,8 @@ export default function Hero() {
         </div>
 
         {/* Main title */}
-        <h1 className="animate-fade-up delay-200" style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(5rem, 15vw, 12rem)", fontWeight: 300, letterSpacing: "0.04em", lineHeight: 0.92, color: "white", margin: "0 0 0.05em", textShadow: "0 0 100px rgba(255,255,255,0.15)" }}>
-          Bilge
-        </h1>
-        <h1 className="animate-fade-up delay-300" style={{ fontFamily: "var(--font-cormorant)", fontSize: "clamp(5rem, 15vw, 12rem)", fontWeight: 300, letterSpacing: "0.04em", lineHeight: 0.92, margin: "0 0 2rem" }}>
-          <span className="text-gold-shimmer">Beauty</span>
+        <h1 style={{ margin: "0 0 2rem", lineHeight: 1 }}>
+          <span className="hero-brand-silver" style={{ fontSize: "clamp(3.6rem, 10.5vw, 9rem)" }}>Bilge Beauty</span>
         </h1>
 
         {/* Sub */}

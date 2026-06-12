@@ -47,10 +47,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <a href="#home" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
-          <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 2px 12px rgba(201,169,110,0.4)", flexShrink: 0 }}>
-            <span style={{ color: "white", fontSize: "0.75rem", fontWeight: 600 }}>B</span>
-          </div>
+        <a href="#home" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <span style={{ fontFamily: "var(--font-cormorant)", fontSize: "1.15rem", fontWeight: 400, letterSpacing: "0.22em", color: scrolled ? "var(--charcoal)" : "white", textShadow: scrolled ? "none" : "0 2px 20px rgba(0,0,0,0.3)", transition: "color 0.4s" }}>
             BILGE BEAUTY
           </span>

@@ -24,10 +24,7 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.2rem" }}>
-              <div style={{ width: "28px", height: "28px", borderRadius: "50%", background: "linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <span style={{ color: "white", fontSize: "0.72rem", fontWeight: 600 }}>B</span>
-              </div>
+            <div style={{ marginBottom: "1.2rem" }}>
               <span style={{ fontFamily: "var(--font-cormorant)", fontSize: "1.15rem", letterSpacing: "0.22em", fontWeight: 300, color: "white" }}>BILGE BEAUTY</span>
             </div>
             <p style={{ fontSize: "0.82rem", color: c, lineHeight: 1.85, margin: 0 }}>
